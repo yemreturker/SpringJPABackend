@@ -16,15 +16,4 @@ public class UserManager implements UserService {
         this.userRepository.save(user);
         return new SuccessResult();
     }
-
-    @Override
-    public DataResult<User> FindByEmail(String email) {
-        User user = this.userRepository.FindByEmail(email);
-        if (user != null) {
-            return  new SuccessDataResult<User>(user);
-        }
-        else {
-            return new ErrorDataResult<User>();
-        }
-    }
 }
