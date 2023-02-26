@@ -35,7 +35,7 @@ spring.jpa.properties.javax.persistence.validation.mode = none
 ```bash
   mvn spring-boot:run
 ```
-The application will run on http://localhost:8080 once it is successfully started.
+The application will run on [LOCALHOST](http://localhost:8080) once it is successfully started.
 ## Usage
 This project includes features for a rental car system, which include:
 
@@ -46,7 +46,7 @@ This project includes features for a rental car system, which include:
 ## Contributing
 Contributions are welcome. If you have any questions or suggestions about the project, please create an issue on GitHub or submit a pull request.
 ## License
-This project is licensed under the MIT License.
+This project is licensed under the [MIT License](https://choosealicense.com/licenses/mit/).
 ## Authors and Acknowledgments
 This project was developed as part of Engin Demirog's Java Camp.
 ## Contact
