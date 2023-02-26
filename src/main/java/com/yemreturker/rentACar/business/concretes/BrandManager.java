@@ -1,13 +1,11 @@
 package com.yemreturker.rentACar.business.concretes;
 
 import com.yemreturker.rentACar.business.abstracts.BrandService;
-import com.yemreturker.rentACar.business.requests.CreateBrandRequest;
-import com.yemreturker.rentACar.business.requests.UpdateBrandRequest;
-import com.yemreturker.rentACar.business.responses.GetAllBrandsResponse;
-import com.yemreturker.rentACar.business.responses.GetByIdBrandResponse;
+import com.yemreturker.rentACar.business.constants.Messages;
 import com.yemreturker.rentACar.core.utilities.mappers.ModelMapperService;
+import com.yemreturker.rentACar.core.utilities.results.*;
 import com.yemreturker.rentACar.dataAccess.abstracts.BrandRepository;
-import com.yemreturker.rentACar.entities.Brand;
+import com.yemreturker.rentACar.entities.concretes.Brand;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,29 +17,34 @@ public class BrandManager implements BrandService {
     private BrandRepository brandRepository;
     private ModelMapperService modelMapperService;
     @Override
-    public List<GetAllBrandsResponse> GetAll() {
-        List<Brand> brands = this.brandRepository.findAll();
-        return brands.stream()
-                .map(brand -> this.modelMapperService.forResponse()
-                        .map(brand, GetAllBrandsResponse.class)).toList();
+    public DataResult<List<Brand>> GetAll() {
+        var result = this.brandRepository.findAll();
+        if (result.toArray().length > 0) {
+            return new SuccessDataResult<List<Brand>>(result);
+        }
+        return new ErrorDataResult<List<Brand>>(result, Messages.BrandListEmpty);
     }
     @Override
-    public GetByIdBrandResponse GetById(int id) {
-        Brand brand = this.brandRepository.findById(id).orElseThrow();
-        return this.modelMapperService.forResponse().map(brand, GetByIdBrandResponse.class);
+    public DataResult<Brand> GetById(int id) {
+        var result = this.brandRepository.findById(id).orElseThrow();
+        return new SuccessDataResult<Brand>(result);
     }
     @Override
-    public void Add(CreateBrandRequest createBrandRequest) {
-        Brand brand = this.modelMapperService.forRequest().map(createBrandRequest, Brand.class);
+    public Result Add(Brand brand) {
         this.brandRepository.save(brand);
+        return new SuccessResult(Messages.BrandAdded);
     }
     @Override
-    public void Update(UpdateBrandRequest updateBrandRequest) {
-        Brand brand = this.modelMapperService.forRequest().map(updateBrandRequest, Brand.class);
-        this.brandRepository.save(brand);
+    public Result Update(Brand brand) {
+        var result = this.brandRepository.findById(brand.getId());
+        if (result.isPresent()) {
+            return new SuccessResult(Messages.BrandUpdated);
+        }
+        return new ErrorResult(Messages.BrandNotFound);
     }
     @Override
-    public void Delete(int id) {
+    public Result Delete(int id) {
         this.brandRepository.deleteById(id);
+        return new SuccessResult(Messages.BrandDeleted);
     }
 }

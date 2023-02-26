@@ -1,15 +1,14 @@
 package com.yemreturker.rentACar.webApi.controllers;
 
 import com.yemreturker.rentACar.business.abstracts.BrandService;
-import com.yemreturker.rentACar.business.requests.CreateBrandRequest;
-import com.yemreturker.rentACar.business.requests.UpdateBrandRequest;
-import com.yemreturker.rentACar.business.responses.GetAllBrandsResponse;
-import com.yemreturker.rentACar.business.responses.GetByIdBrandResponse;
+
+import com.yemreturker.rentACar.core.utilities.results.DataResult;
+import com.yemreturker.rentACar.core.utilities.results.Result;
+import com.yemreturker.rentACar.entities.concretes.Brand;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -18,25 +17,25 @@ import java.util.List;
 public class BrandsController {
     private BrandService brandService;
     @GetMapping()
-    public List<GetAllBrandsResponse> GetAll() {
+    public DataResult<List<Brand>> GetAll() {
         return this.brandService.GetAll();
     }
     @GetMapping()
     @RequestMapping("/{id}")
-    public GetByIdBrandResponse GetById(@PathVariable int id) {
+    public DataResult<Brand> GetById(@PathVariable int id) {
         return this.brandService.GetById(id);
     }
     @PostMapping()
     @ResponseStatus(code = HttpStatus.CREATED)
-    public void  Add(@RequestBody() CreateBrandRequest createBrandRequest) {
-        this.brandService.Add(createBrandRequest);
+    public Result Add(@RequestBody() Brand brand) {
+        return this.brandService.Add(brand);
     }
     @PutMapping()
-    public  void  Update(@RequestBody() UpdateBrandRequest updateBrandRequest) {
-        this.brandService.Update(updateBrandRequest);
+    public Result Update(@RequestBody() Brand brand) {
+        return this.brandService.Update(brand);
     }
     @DeleteMapping("/{id}")
-    public  void  Delete(@PathVariable int id) {
-        this.brandService.Delete(id);
+    public  Result  Delete(@PathVariable int id) {
+        return this.brandService.Delete(id);
     }
 }
