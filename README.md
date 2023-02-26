@@ -47,6 +47,6 @@ Contributions are welcome. If you have any questions or suggestions about the pr
 ## License
 This project is licensed under the [MIT License](https://choosealicense.com/licenses/mit/).
 ## Authors and Acknowledgments
-This project was developed as part of Engin Demirog's Java Camp.
+This project was developed as part of [Engin Demirog](https://github.com/engindemirog)'s Java Camp.
 ## Contact
 If you have any questions or feedback about the project, please [create an issue on GitHub](https://github.com/yemreturker/SpringJPABackend/issues) or [send an email](mailto:yemreturker@outlook.com).
