@@ -1,14 +1,11 @@
 package com.yemreturker.rentACar.webApi.controllers;
 
 import com.yemreturker.rentACar.business.abstracts.BrandService;
-
-import com.yemreturker.rentACar.core.utilities.results.DataResult;
-import com.yemreturker.rentACar.core.utilities.results.Result;
+import com.yemreturker.rentACar.core.utilities.results.*;
 import com.yemreturker.rentACar.entities.concretes.Brand;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController

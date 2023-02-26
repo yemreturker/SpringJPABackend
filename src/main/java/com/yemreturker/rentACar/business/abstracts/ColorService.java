@@ -1,5 +1,8 @@
 package com.yemreturker.rentACar.business.abstracts;
 
-public interface ColorService {
+import com.yemreturker.rentACar.core.business.abstracts.EntityService;
+import com.yemreturker.rentACar.entities.concretes.Color;
+
+public interface ColorService extends EntityService<Color> {
 
 }

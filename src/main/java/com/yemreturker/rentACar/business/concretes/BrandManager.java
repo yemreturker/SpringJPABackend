@@ -2,32 +2,29 @@ package com.yemreturker.rentACar.business.concretes;
 
 import com.yemreturker.rentACar.business.abstracts.BrandService;
 import com.yemreturker.rentACar.business.constants.Messages;
-import com.yemreturker.rentACar.core.utilities.mappers.ModelMapperService;
 import com.yemreturker.rentACar.core.utilities.results.*;
 import com.yemreturker.rentACar.dataAccess.abstracts.BrandRepository;
 import com.yemreturker.rentACar.entities.concretes.Brand;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
 @AllArgsConstructor
 public class BrandManager implements BrandService {
     private BrandRepository brandRepository;
-    private ModelMapperService modelMapperService;
     @Override
     public DataResult<List<Brand>> GetAll() {
         var result = this.brandRepository.findAll();
         if (result.toArray().length > 0) {
-            return new SuccessDataResult<List<Brand>>(result);
+            return new SuccessDataResult<>(result);
         }
-        return new ErrorDataResult<List<Brand>>(result, Messages.BrandListEmpty);
+        return new ErrorDataResult<>(result, Messages.BrandListEmpty);
     }
     @Override
     public DataResult<Brand> GetById(int id) {
         var result = this.brandRepository.findById(id).orElseThrow();
-        return new SuccessDataResult<Brand>(result);
+        return new SuccessDataResult<>(result);
     }
     @Override
     public Result Add(Brand brand) {
@@ -44,7 +41,11 @@ public class BrandManager implements BrandService {
     }
     @Override
     public Result Delete(int id) {
-        this.brandRepository.deleteById(id);
-        return new SuccessResult(Messages.BrandDeleted);
+        var result = this.brandRepository.findById(id);
+        if (result.isPresent()) {
+            this.brandRepository.deleteById(id);
+            return new SuccessResult(Messages.BrandDeleted);
+        }
+        return new ErrorResult(Messages.BrandNotFound);
     }
 }

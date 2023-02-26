@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public class Result {
-    private  boolean Success;
+    private final boolean Success;
     private  String Message;
     public  Result(boolean success) {
         this.Success = success;
