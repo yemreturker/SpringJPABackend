@@ -46,7 +46,7 @@ This project includes features for a rental car system, which include:
 ## Contributing
 Contributions are welcome. If you have any questions or suggestions about the project, please create an issue on GitHub or submit a pull request.
 ## License
-This project is licensed under the MIT License. See the LICENSE file for more information.
+This project is licensed under the MIT License.
 ## Authors and Acknowledgments
 This project was developed as part of Engin Demirog's Java Camp.
 ## Contact
