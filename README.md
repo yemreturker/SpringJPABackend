@@ -21,7 +21,7 @@ git clone https://github.com/yemreturker/SpringJPABackend.git
 ```bash
 cd SpringJPABackend
 ```
-* Open src/main/resources/application.properties and update the following properties with your PostgreSQL Server details:
+* Open src/main/resources/application.properties and update the following properties with your [PostgreSQL](https://jdbc.postgresql.org/) Server details:
 ```properties
 spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.PostgreSQLDialect
 spring.jpa.hibernate.ddl-auto=update
