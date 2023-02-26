@@ -19,7 +19,7 @@ git clone https://github.com/yemreturker/SpringJPABackend.git
 ```
 * Navigate to the project directory in your terminal:
 ```bash
-  cd SpringJPABackend
+cd SpringJPABackend
 ```
 * Open src/main/resources/application.properties and update the following properties with your PostgreSQL Server details:
 ```properties
@@ -33,7 +33,7 @@ spring.jpa.properties.javax.persistence.validation.mode = none
 ```
 * Run the following command to start the application:
 ```bash
-  mvn spring-boot:run
+mvn spring-boot:run
 ```
 The application will run on [LOCALHOST](http://localhost:8080) once it is successfully started.
 ## Usage
