@@ -23,8 +23,11 @@ public class ColorManager implements ColorService {
     }
     @Override
     public DataResult<Color> GetById(int id) {
-        var result = this.colorRepository.findById(id).orElseThrow();
-        return new SuccessDataResult<>(result);
+        var result = this.colorRepository.findById(id).orElse(null);
+        if (result != null) {
+            return new SuccessDataResult<>(result);
+        }
+        return new ErrorDataResult<>(Messages.ColorNotFound);
     }
     @Override
     public Result Add(Color entity) {

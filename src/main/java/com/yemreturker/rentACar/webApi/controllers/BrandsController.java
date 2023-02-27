@@ -17,21 +17,19 @@ public class BrandsController {
     public DataResult<List<Brand>> GetAll() {
         return this.brandService.GetAll();
     }
-    @GetMapping()
-    @RequestMapping("/{id}")
+    @GetMapping("/{id}")
     public DataResult<Brand> GetById(@PathVariable int id) {
         return this.brandService.GetById(id);
     }
-    @PostMapping()
-    @ResponseStatus(code = HttpStatus.CREATED)
+    @PostMapping("/add")
     public Result Add(@RequestBody() Brand brand) {
         return this.brandService.Add(brand);
     }
-    @PutMapping()
+    @PutMapping("/update")
     public Result Update(@RequestBody() Brand brand) {
         return this.brandService.Update(brand);
     }
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete")
     public  Result  Delete(@PathVariable int id) {
         return this.brandService.Delete(id);
     }

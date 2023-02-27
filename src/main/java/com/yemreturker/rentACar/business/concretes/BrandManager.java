@@ -23,8 +23,11 @@ public class BrandManager implements BrandService {
     }
     @Override
     public DataResult<Brand> GetById(int id) {
-        var result = this.brandRepository.findById(id).orElseThrow();
-        return new SuccessDataResult<>(result);
+        var result = this.brandRepository.findById(id).orElse(null);
+        if (result != null) {
+            return new SuccessDataResult<>(result);
+        }
+        return new ErrorDataResult<>(Messages.BrandNotFound);
     }
     @Override
     public Result Add(Brand brand) {

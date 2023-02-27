@@ -17,21 +17,19 @@ public class ColorsController {
     public DataResult<List<Color>> GetAll() {
         return this.colorService.GetAll();
     }
-    @GetMapping()
-    @RequestMapping("/{id}")
+    @GetMapping("/{id}")
     public DataResult<Color> GetById(@PathVariable int id) {
         return this.colorService.GetById(id);
     }
-    @PostMapping()
-    @ResponseStatus(code = HttpStatus.CREATED)
+    @PostMapping("/add")
     public Result Add(@RequestBody() Color color) {
         return this.colorService.Add(color);
     }
-    @PutMapping()
+    @PutMapping("/update")
     public Result Update(@RequestBody() Color color) {
         return this.colorService.Update(color);
     }
-    @DeleteMapping()
+    @DeleteMapping("/delete")
     public Result Delete(@PathVariable int id) {
         return this.colorService.Delete(id);
     }
